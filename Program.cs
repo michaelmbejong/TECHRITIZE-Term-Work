@@ -1,5 +1,5 @@
+using login_api.Models;
 using Microsoft.EntityFrameworkCore;
-using TODOAPI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("Todolist"));
+builder.Services.AddDbContext<Logincontext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
